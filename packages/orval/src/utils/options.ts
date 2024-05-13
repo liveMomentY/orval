@@ -243,6 +243,7 @@ export const normalizeOptions = async (
         useDeprecatedOperations:
           outputOptions.override?.useDeprecatedOperations ?? true,
         useNativeEnums: outputOptions.override?.useNativeEnums ?? false,
+        enumKey: outputOptions.override?.enumKey ?? 'x-enumNames',
       },
       allParamsOptional: outputOptions.allParamsOptional ?? false,
       urlEncodeParameters: outputOptions.urlEncodeParameters ?? false,

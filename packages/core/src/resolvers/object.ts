@@ -51,7 +51,7 @@ const resolveObjectOriginal = ({
     const enumValue = getEnum(
       resolvedValue.value,
       propName,
-      resolvedValue.originalSchema?.['x-enumNames'],
+      resolvedValue.originalSchema?.[context.output.override.enumKey ?? 'x-enumNames'],
       context.output.override.useNativeEnums,
     );
 

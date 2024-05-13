@@ -173,7 +173,7 @@ export const combineSchemas = ({
   if (isAllEnums && name && items.length > 1) {
     const newEnum = `\n\n// eslint-disable-next-line @typescript-eslint/no-redeclare\nexport const ${pascal(
       name,
-    )} = ${getCombineEnumValue(resolvedData)}`;
+    )} = ${getCombineEnumValue(resolvedData, context.output.override.enumKey ?? 'x-enumNames')}`;
 
     return {
       value:
@@ -217,7 +217,7 @@ const getCombineEnumValue = ({
   values,
   isRef,
   originalSchema,
-}: CombinedData) => {
+}: CombinedData, enumKey: string) => {
   if (values.length === 1) {
     if (isRef[0]) {
       return values[0];
@@ -232,7 +232,7 @@ const getCombineEnumValue = ({
         return `...${e},`;
       }
 
-      const names = originalSchema[i]?.['x-enumNames'] as string[];
+      const names = originalSchema[i]?.[enumKey] as string[];
 
       return getEnumImplementation(e, names);
     })

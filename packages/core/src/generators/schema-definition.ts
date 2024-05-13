@@ -58,7 +58,7 @@ export const generateSchemasDefinition = (
           output += getEnum(
             resolvedValue.value,
             schemaName,
-            resolvedValue.originalSchema?.['x-enumNames'],
+            resolvedValue.originalSchema?.[context.output.override.enumKey ?? 'x-enumNames'],
             context.output.override.useNativeEnums,
           );
         } else if (schemaName === resolvedValue.value && resolvedValue.isRef) {
